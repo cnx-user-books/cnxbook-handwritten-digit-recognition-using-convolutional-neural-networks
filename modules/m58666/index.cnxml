@@ -1,0 +1,52 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Breakdown of a Neural Network</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m58666</md:content-id>
+  <md:title>Breakdown of a Neural Network</md:title>
+  <md:abstract>This module breaks down a standard neural network, describing the different parameters, hyper-parameters, and functions that are necessary for building a neural network.</md:abstract>
+  <md:uuid>28256035-b6e5-49f6-96d0-0413f7e0156e</md:uuid>
+</metadata>
+
+<content>
+<para id="eip-170"><title>Cost Functions</title>The different cost functions we explored using were the sigmoid function, rectified linear units (ReLU), and the softmax normalization function.</para><figure id="sigmoid"><title>Sigmoid Function</title><media id="sigmoid-func" alt="sigmoid">
+    <image mime-type="image/jpeg" src="../../media/sigmoid1.png"/>
+  </media>
+  
+<caption>Equation for the sigmoid activation function
+  </caption></figure><para id="eip-357">The sigmoid activation function is the most general nonlinear activation function used in neural networks. Intuition would naively suggest that the activation of a neuron would be well modeled by the step function, but the issue is its non-differentiability. The stochastic gradient descent algorithm requires that activation functions be differentiable. The solution would be to approximate the step function using a smooth function like the sigmoid or the hyperbolic tangent. The issue with the sigmoid function is that its derivative far from the origin is near zero, so if any individual weight on a neuron is very wrong, it is unable to use the gradient to adjust its value. As a result, outlier weights can significantly impact the performance of the network.</para><figure id="relu"><title>Rectified Linear Units</title><media id="relu-func" alt="relu">
+    <image mime-type="image/jpeg" src="../../media/relu1.png"/>
+  </media>
+  
+<caption>Equation for the ReLU activation function
+  </caption></figure><para id="eip-721">The advantage of using rectified linear units is threefold. First, its derivative is a constant (either 0 or 1) making the computation of the gradient much faster. Second, it is a better approximation of how biological neurons fire, in the sense that there is no activation in the absence of stimulation. Third, rectified linear units speed up learning by not being able to fire with zero net excitation. This means that if an excitation fails to overcome a neuron’s bias, the neuron will not fire at all. And when it does fire, the activation is linearly proportional to the excitation. The sigmoid function in comparison allows for some activation to occur with zero and even negative net excitation. However, a lower learning rate needs to be used with ReLU because its zero derivative for a net excitation less than zero means that the neuron effectively stops learning once its net excitation hits zero.</para><figure id="softmax"><title>Softmax</title><media id="softmax-func" alt="softmax">
+    <image mime-type="image/jpeg" src="../../media/softmax1.png"/>
+  </media>
+  
+<caption>Equation for the softmax activation function
+  </caption></figure><para id="eip-543">Softmax activation is particularly useful on the output layer, as it normalizes the output. Exponentiating each of the net excitations gives a more dramatic representation of the differences between them. Weak excitations become weaker activations and strong excitations become stronger activations. Everything is then normalized, giving the layer the effect of becoming a decision-maker.</para>
+<para id="eip-199"><title>Activation Functions</title>The different cost functions we explored using for the gradient descent learning algorithm were mean-squared error, cross-entropy, and log-likelihood.</para><figure id="mse"><title>Mean-Squared Error</title><media id="mse-func" alt="mse">
+    <image mime-type="image/jpeg" src="../../media/mse1.png"/>
+  </media>
+  
+<caption>Equation for the mean-squared error cost function
+  </caption></figure><para id="eip-974">Mean-squared error is the simplest measurement of difference that can be used to good effect in a neural network. It can be used with any activation function and is the more versatile option, though not always the most effective one. One of its shortcomings is that neurons with a sigmoid activation function become saturated quickly and are unable to learn more as a result of the relatively small magnitude of the sigmoid’s derivative far from the origin.</para><figure id="entropy"><title>Cross-Entropy</title><media id="entropy-func" alt="entropy">
+    <image mime-type="image/jpeg" src="../../media/cross-entropy2.png"/>
+  </media>
+  
+<caption>Equation for the cross-entropy cost function
+  </caption></figure><para id="eip-874">Cross-entropy treats the desired output as some probability distribution and the network’s output as another probability distribution, and measures the distance between the distributions. The main attraction to using cross-entropy is that when used in conjunction with the sigmoid activation function, its gradient is linearly dependent on the error, solving the issue with neurons becoming saturated quickly.</para><figure id="log"><title>Log-likelihood</title><media id="log-func" alt="log">
+    <image mime-type="image/jpeg" src="../../media/log2.png"/>
+  </media>
+  
+<caption>Equation for the log-likelihood cost function
+  </caption></figure><para id="eip-97">Log likelihood maximizes only the output neuron corresponding to which neuron should be firing. Used in conjunction with a softmax layer, all other output neurons would be minimized as a result of maximizing the desired output neuron. In this sense, a softmax layer has to be used, or the activations of the final layer will be too close together to draw meaningful conclusions.</para>
+<para id="eip-783"><title>Stochastic Gradient Descent</title></para><figure id="SGD"><title>Stochastic Gradient Descent</title><media id="sgd-func" alt="sgd">
+    <image mime-type="image/jpeg" src="../../media/sgd1.png"/>
+  </media>
+  
+<caption>Equation for the SGD learning algorithm, applied to both the weights and biases.
+  </caption></figure><para id="eip-910">Stochastic gradient descent is the algorithm used in our network to adjust weights and biases according to the evaluation of the gradient of a given cost function. The gradient determines whether a parameter should increase or decrease and by how much. The learning rate of a network is a constant associated with how much a parameter should travel down its gradient at each reevaluation. In the original algorithm, parameters are updated after each given input. A common practice with neural nets is to only reevaluate the gradient after a so-called minibatch of multiple inputs is passed. This way, the cost function has multiple samples and can better construct a curve, yet the gradient is somewhat different every time it’s evaluated. This introduces some noise into the gradient to make it harder for parameters to get stuck in a local minimum of the gradient. </para><para id="eip-490"><title>Dropout</title>Overfitting is an issue experienced in networks when neurons are trained to identify specific images in a training set rather than the more general concept that an image represents. Instead of recognizing a 7, the network may only recognize the particular 7s that were in the training data set. To prevent this, we implemented dropout in our network. Random neurons in our interconnected layers were turned off between mini-batches, meaning that certain weights were not able to be used in determining an output. This essentially means that we were training a slightly different network each mini-batch, encouraging more neurons to learn meaningfully, as weights will typically be more fairly distributed. In evaluating the network, all neurons are turned back on and their weights are scaled down by the dropout rate. As a result, neurons are less strongly associated with particular images, and more applicable to a more expansive set of images.</para>
+</content>
+
+</document>

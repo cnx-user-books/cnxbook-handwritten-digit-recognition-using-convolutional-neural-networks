@@ -1,0 +1,17 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Advantages of Convolution</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m58669</md:content-id>
+  <md:title>Advantages of Convolution</md:title>
+  <md:abstract>This module outlines the advantages of adding convolutional and pooling layers to a standard neural network for applications of image recognition.</md:abstract>
+  <md:uuid>b1b1b55b-1510-465c-9763-808f3eb29bfb</md:uuid>
+</metadata>
+
+<content>
+  <para id="eip-865">The main motivation behind using convolutional layers is that it is typically true of images that pixels in close proximity are more related with each other than with pixels that are a greater distance away. Thus, compared to fully connected layers, convolutional layers give a better indication of general features that appear in an image by taking advantage of this spatial structure of images.</para><para id="eip-434"><title>Shift Invariance</title>A major shortcoming of fully interconnected networks is their dependence on position of a feature in an image. Such a network would recognize an image, but not its slightly shifted self. Training shift invariance in a fully connected is network is possible, and involves extensive expansion of training data, but it’s significantly more efficient to use convolution, which naturally has this property. Convolutional layers detect a given feature, regardless of its position on an image. Because the MNIST data set is centered and normalized, a fully connected network can still work, but a network with convolutional layers is able to handle data that is not properly centered or normalized.</para><para id="eip-605"><title>Computationally Efficient</title>Another consequence of using convolutional networks is that there are fewer parameters involved, making the network more computationally efficient to train. For any given neuron in a fully connected hidden layer, there is a weight and a bias associated with each neuron in the previous layer, and as such, the number of parameters scale as the number of neurons squared, assuming a similar number of neurons in each interconnected layer. This makes it incredibly difficult and computationally inefficient to implement deep neural networks consisting of only fully connected layers. Convolutional layers by contrast only have 1 bias per kernel and 1 weight for each pixel of each kernel. A neuron in the following layer is only connected to the number of neurons specified by the size of the kernel. Now instead of scaling as n squared, parameters scale as the number of kernels times the size of each kernel.</para><para id="delete_me">
+     <!-- Insert module text here -->
+  </para>
+</content>
+
+</document>

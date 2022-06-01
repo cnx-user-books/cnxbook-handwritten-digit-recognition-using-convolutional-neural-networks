@@ -1,0 +1,64 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+  <md:content-id>col11922</md:content-id>
+  <md:title>Handwritten Digit Recognition Using Convolutional Neural Networks</md:title>
+  
+  
+  <md:license url="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License 4.0</md:license>
+  <md:language>en</md:language>
+
+  
+
+  
+  
+  
+  
+  
+
+  <md:uuid>2b428174-3ee7-4240-a1fe-b117d41b470a</md:uuid>
+<md:slug>handwritten-digit-recognition-using-convolutional-neural-networks</md:slug>
+</metadata>
+
+  <col:content>
+    
+      <col:module document="m58168"/>
+        
+      
+    
+    
+      <col:module document="m58670"/>
+        
+      
+    
+    
+      <col:module document="m58666"/>
+        
+      
+    
+    
+      <col:module document="m58667"/>
+        
+      
+    
+    
+      <col:module document="m58669"/>
+        
+      
+    
+    
+      <col:module document="m58672"/>
+        
+      
+    
+    
+      <col:module document="m58677"/>
+        
+      
+    
+    
+      <col:module document="m58682"/>
+        
+      
+    
+  </col:content>
+</col:collection>

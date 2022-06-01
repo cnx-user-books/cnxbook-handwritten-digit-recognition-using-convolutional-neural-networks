@@ -1,0 +1,39 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Different Types of Layers</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m58667</md:content-id>
+  <md:title>Different Types of Layers</md:title>
+  <md:abstract>This module describes each of the different types of layers we employed in our convolutional neural network.</md:abstract>
+  <md:uuid>4c07b708-59e0-46bf-8a23-14b5ddeb28cc</md:uuid>
+</metadata>
+
+<content>
+  <para id="eip-228"><title>Convolutional</title>Convolutional layers produce output feature maps by convolving an input with each of its kernels, trained to recognize different characteristics. Each kernel is an arrangement of weights into a square filter. The first convolutional layer in our network convolves the input image with a set of 20 5x5 kernels to produce 20 feature maps and the second convolutional layer convolves the input (a set of pooled feature maps) with 40 4x4 kernels to produce higher-level feature maps. Each neuron in our convolutional layers uses ReLU (Rectified Linear Units) as its activation function.</para><para id="eip-24">The filters in the convolutional layers were trained to recognize particular features. The first convolutional layer detects features such as edges and total “mass” of the image, while the second convolutional layer detects higher-level features including the intersections of features detected in the first layer. The features that each kernel detects were trained through the learning process, where the weights in the kernels were updated during the SGD algorithm. </para>
+<figure id="conv"><title>2D Convolution</title><media id="conv-pic" alt="2dconv">
+    <image mime-type="image/jpeg" src="../../media/convolutional_layer.png"/>
+  </media>
+  
+<caption>Each filter in the convolutional layers produces a feature map using 2D convolution as above.
+  </caption></figure><para id="eip-28"><title>Pooling</title>Pooling layers produce an output by reducing the size of its input using some function. The output of each convolutional layer in our network is used as the input to a pooling layer. The pooling layers take 2x2 regions of the input and pass the maximum value of each region as its output. In this way, the pooling layer effectively reduces the size of the data being handled in the network while still preserving the important features that were detected in the convolutional layers. Significant activations of neurons are preserved as a result of taking the maximum value in a region.</para>
+
+<figure id="pooling">
+  <title>Pooling</title>
+  <media id="pool-pic" alt="maxpooling">
+    <image mime-type="image/jpeg" src="../../media/pooling_layer.png"/>
+  </media>
+  <caption>
+     The pooling layer samples each feature map into a smaller map as above.
+  </caption>
+</figure>
+
+<para id="eip-670"><title>Fully-Connected</title>Neurons in fully connected layers are connected to every neuron in the previous layer and every neuron in the next layer. Each connection has a corresponding weight and bias associated with it. The last 2 layers in our network are both fully connected layers. The first fully connected layer detects the presence of the higher level features found in the second convolutional layer, using the ReLU activation function. The second fully connected layer is the softmax layer, using the softmax activation function. </para>
+
+<figure id="interconnected"><title>Fully Connected Layers</title><media id="fully-pic" alt="fully-connected">
+    <image mime-type="image/jpeg" src="../../media/fully_connected.png"/>
+  </media>
+  
+<caption>Example of three fully connected layers.
+  </caption></figure></content>
+
+</document>
